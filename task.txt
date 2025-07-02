@@ -1,0 +1,4 @@
+TASK 1
+-------------------------------------------------------------------------
+Build a responsive dashboard using Next.js with TailwindCSS and Material UI. Include a navbar, sidebar, and dashboard widgets (charts, cards). Integrate Chart.js or Recharts for visualizations. Create responsive layout using Tailwind's grid/flex utilities. Use Material UI for components like cards, buttons, and tabs.
+Turn on screen reader support.
