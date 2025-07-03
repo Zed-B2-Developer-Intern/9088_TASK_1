@@ -11,31 +11,35 @@ import Image from "next/image";
 
 export default function Sidebar() {
   function handlehomeevent() {
-    alert("okay");
+    alert("You Logged Out");
   }
-  return (
-    <div className="bg-gray-100 w-64 h-screen fixed top-0 left-0 border-r border-gray-200">
-      <div>
-        <div className="flex flex-col items-center justify-center bg-gray-100">
-          <Image src="/dashboard.svg" alt="Logo" width={150} height={150} />
 
+  return (
+    <div className="bg-gray-100 dark:bg-dark-card w-64 h-screen fixed top-0 left-0 border-r border-gray-200 dark:border-gray-700 flex flex-col justify-between">
+      {/* Logo Section */}
+      <div>
+        <div className="flex flex-col items-center justify-center pt-6 pb-4">
+          <Image src="/dashboard.svg" alt="Logo" width={100} height={100} />
           {/* <h1 className="text-black font-bold text-xs">WELCOME</h1> */}
         </div>
 
-        <div>
-          <Listtile
-            title="DashBorad"
-            icon={<DashboardIcon />}
-            onClick={handlehomeevent}
-          />
-          <Listtile title="Analytics" icon={<AnalyticsIcon />} />
-          <Listtile title="Sales" icon={<TrendingUpIcon />} />
-          <Listtile title="Orders" icon={<ReceiptLongIcon />} />
-          <Listtile title="Categories" icon={<CategoryIcon />} />
+        {/* Navigation Items and Routing */}
+        <div className="flex flex-col">
+          <Listtile title="Dashboard" icon={<DashboardIcon />} href={'/dashboard'} />
+          <Listtile title="Analytics" icon={<AnalyticsIcon />} href={'/analytics'}/>
+          <Listtile title="Sales" icon={<TrendingUpIcon />} href={'/sales'}/>
+          <Listtile title="Orders" icon={<ReceiptLongIcon />} href={'/orders'}/>
+          <Listtile title="Categories" icon={<CategoryIcon />} href={'/categories'}/>
         </div>
       </div>
-      <div>
-        <Listtile title="Logout" icon={<LogoutIcon />} />
+
+      {/* Logout Button */}
+      <div className="mb-4">
+        <Listtile
+          title="Logout"
+          icon={<LogoutIcon />}
+          onClick={handlehomeevent}
+        />
       </div>
     </div>
   );
