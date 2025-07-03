@@ -28,6 +28,7 @@ export default function CategoriesPage() {
   return (
     <div className="space-y-2">
       <Grid container spacing={2}>
+        {/* total categories card */}
         <Grid item>
           <Card>
             <CardContent>
@@ -36,6 +37,7 @@ export default function CategoriesPage() {
             </CardContent>
           </Card>
         </Grid>
+        {/* Total revenue card */}
         <Grid item>
           <Card>
             <CardContent>
@@ -46,6 +48,9 @@ export default function CategoriesPage() {
             </CardContent>
           </Card>
         </Grid>
+        {/* 
+        Total Orders card
+        */}
         <Grid item>
           <Card>
             <CardContent>
