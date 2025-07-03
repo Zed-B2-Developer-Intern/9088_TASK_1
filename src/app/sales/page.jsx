@@ -104,7 +104,7 @@ export default function SalesPage() {
               <TableRow>
                 <TableCell>Category</TableCell>
 
-                <TableCell align="right">Revenue in ₹ </TableCell>
+                <TableCell align="right">Revenue  ₹ </TableCell>
 
                 <TableCell align="right">Orders</TableCell>
               </TableRow>
@@ -113,7 +113,7 @@ export default function SalesPage() {
               {categoryStats.map((row) => (
                 <TableRow key={row.category}>
                     <TableCell>{row.category}</TableCell>
-                  <TableCell align="right">{row.revenue}</TableCell>
+                  <TableCell align="right">₹{row.revenue}</TableCell>
                   <TableCell align="right">{row.orders}</TableCell>
                 </TableRow>
               ))}

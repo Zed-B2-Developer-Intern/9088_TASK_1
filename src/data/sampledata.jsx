@@ -119,7 +119,8 @@ export const recentOrders = [
 export const categoryStats = [
   { category: 'Electronics', revenue: 25000, orders: 320 },
   { category: 'Clothing', revenue: 18000, orders: 240 },
-  { category: 'Home & Kitchen', revenue: 16000, orders: 210 },
+  
   { category: 'Books', revenue: 8000, orders: 100 },
   { category: 'Others', revenue: 8800, orders: 130 },
+  { category: 'Home & Kitchen', revenue: 16000, orders: 210 },
 ];
