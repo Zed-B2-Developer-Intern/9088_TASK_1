@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
+import { usePathname } from "next/navigation";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
+  
+  const pathname = usePathname();
+  const pageTitle = pathname === "/" ? "Dashboard" : pathname.split("/")[1].replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -33,7 +38,7 @@ export default function Navbar() {
   };
   return (
     <div className="text-gray-400 h-16 flex items-center px-4 opacity-90 justify-between fixed top-0 left-64 right-0 z-50 bg-white dark:bg-dark-card dark:text-dark-text-main border-b border-gray-200 dark:border-gray-700">
-      <h1 className="text-xl font-bold">Dashboard</h1>
+      <h1 className="text-xl font-bold">{pageTitle}</h1>
       <div className="flex items-center gap-3">
         <button onClick={toggleTheme}>
           {theme === "dark" ? <WbSunnyIcon className="text-yellow-400" /> : <DarkModeIcon className="text-gray-700" />}
