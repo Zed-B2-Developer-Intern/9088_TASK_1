@@ -31,26 +31,90 @@ export const revenueByCategory = [
 export const recentOrders = [
   {
     id: 'ORD12345',
-    customer: 'John Doe',
+    customer: 'G2editz',
     date: '2025-07-01',
     amount: 120,
     status: 'Delivered',
   },
   {
     id: 'ORD12346',
-    customer: 'Jane Smith',
+    customer: 'Goku',
     date: '2025-06-30',
     amount: 95,
     status: 'Shipped',
   },
   {
     id: 'ORD12347',
-    customer: 'Alex Johnson',
+    customer: 'Kira',
     date: '2025-06-29',
     amount: 200,
     status: 'Pending',
   },
+  {
+    id: 'ORD12348',
+    customer: 'Luffy',
+    date: '2025-06-28',
+    amount: 160,
+    status: 'Delivered',
+  },
+  {
+    id: 'ORD12349',
+    customer: 'Naruto',
+    date: '2025-06-27',
+    amount: 145,
+    status: 'Cancelled',
+  },
+  {
+    id: 'ORD12350',
+    customer: 'Levi',
+    date: '2025-06-26',
+    amount: 180,
+    status: 'Shipped',
+  },
+  {
+    id: 'ORD12351',
+    customer: 'Itachi',
+    date: '2025-06-25',
+    amount: 210,
+    status: 'Delivered',
+  },
+  {
+    id: 'ORD12352',
+    customer: 'Saitama',
+    date: '2025-06-24',
+    amount: 110,
+    status: 'Pending',
+  },
+  {
+    id: 'ORD12353',
+    customer: 'Gojo',
+    date: '2025-06-23',
+    amount: 230,
+    status: 'Shipped',
+  },
+  {
+    id: 'ORD12354',
+    customer: 'Hinata',
+    date: '2025-06-22',
+    amount: 90,
+    status: 'Delivered',
+  },
+  {
+    id: 'ORD12355',
+    customer: 'Nezuko',
+    date: '2025-06-21',
+    amount: 75,
+    status: 'Returned',
+  },
+  {
+    id: 'ORD12356',
+    customer: 'Zoro',
+    date: '2025-06-20',
+    amount: 170,
+    status: 'Shipped',
+  },
 ];
+
 
 export const categoryStats = [
   { category: 'Electronics', revenue: 25000, orders: 320 },
