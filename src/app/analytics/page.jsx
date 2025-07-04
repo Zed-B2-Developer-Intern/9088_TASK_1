@@ -15,12 +15,14 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { useTheme } from "@mui/material/styles";
 
 import { monthlySales, revenueByCategory } from "@/data/sampledata";
 
 const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#a4de6c"];
 
 export default function AnalyticsPage() {
+  const theme = useTheme();
   return (
     <div>
       {/* Monthly Sales Line Chart */}
@@ -31,9 +33,15 @@ export default function AnalyticsPage() {
           </Typography>
           <ResponsiveContainer width=" 100 %" height={300}>
             <LineChart data={monthlySales}>
-              <XAxis dataKey="month"></XAxis>
-              <YAxis></YAxis>
-              <Tooltip></Tooltip>
+              <XAxis dataKey="month" stroke={theme.palette.text.primary} />
+              <YAxis stroke={theme.palette.text.primary} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: theme.palette.background.paper,
+                  color: theme.palette.text.primary,
+                  border: "1px solid #ccc",
+                }}
+              />
               <Line
                 type="monotone"
                 dataKey="sales"
@@ -54,9 +62,15 @@ export default function AnalyticsPage() {
           </Typography>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={revenueByCategory}>
-              <XAxis dataKey="category"></XAxis>
-              <YAxis></YAxis>
-              <Tooltip></Tooltip>
+              <XAxis dataKey="category" stroke={theme.palette.text.primary} />
+              <YAxis stroke={theme.palette.text.primary} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: theme.palette.background.paper,
+                  color: theme.palette.text.primary,
+                  border: "1px solid #ccc",
+                }}
+              />
               <Bar dataKey="revenue" fill="#1976d2"></Bar>
             </BarChart>
           </ResponsiveContainer>

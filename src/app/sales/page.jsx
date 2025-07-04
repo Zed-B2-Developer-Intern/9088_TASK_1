@@ -26,6 +26,8 @@ import {
   categoryStats,
 } from "@/data/sampledata";
 
+import { useTheme } from "@mui/material/styles";
+
 export default function SalesPage() {
   const highestMonth = monthlySales.reduce((prev, curr) =>
     curr.sales > prev.sales ? curr : prev
@@ -34,11 +36,11 @@ export default function SalesPage() {
   const topcategory = categoryStats.reduce((prev, curr) =>
     curr.revenue > prev.revenue ? curr : prev
   );
-
+  const theme = useTheme();
   return (
     <div className="p-4 space-y-6">
-      {/* Summary Cards */}
       <Grid container spacing={2}>
+        {/* Total Sales Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="rounded-xl shadow-md">
             <CardContent>
@@ -49,7 +51,7 @@ export default function SalesPage() {
             </CardContent>
           </Card>
         </Grid>
-
+        {/* Total Revenue Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="rounded-xl shadow-md">
             <CardContent>
@@ -60,7 +62,7 @@ export default function SalesPage() {
             </CardContent>
           </Card>
         </Grid>
-
+        {/* Average Order Value Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="rounded-xl shadow-md">
             <CardContent>
@@ -71,7 +73,7 @@ export default function SalesPage() {
             </CardContent>
           </Card>
         </Grid>
-
+        {/* Highest Month Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="rounded-xl shadow-md">
             <CardContent>
@@ -93,9 +95,15 @@ export default function SalesPage() {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={monthlySales}>
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
+                <XAxis dataKey="month" stroke={theme.palette.text.primary} />
+                <YAxis stroke={theme.palette.text.primary} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: theme.palette.background.paper,
+                    color: theme.palette.text.primary,
+                    border: "1px solid #ccc",
+                  }}
+                />
                 <Bar dataKey="sales" fill="#1976d2" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>

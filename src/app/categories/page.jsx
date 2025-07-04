@@ -21,7 +21,10 @@ import {
 } from "recharts";
 import { categoryStats } from "@/data/sampledata";
 
+import { useTheme } from "@mui/material/styles";
+
 export default function CategoriesPage() {
+  const theme = useTheme();
   const totalRevenue = categoryStats.reduce((sum, c) => sum + c.revenue, 0);
   const totalOrders = categoryStats.reduce((sum, c) => sum + c.orders, 0);
 
@@ -111,9 +114,18 @@ export default function CategoriesPage() {
           <div className="w-full h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={categoryStats}>
-                <XAxis dataKey="category" />
-                <YAxis />
-                <Tooltip />
+                <XAxis
+                  dataKey="category"
+                  stroke={theme.palette.text.primary} 
+                />
+                <YAxis stroke={theme.palette.text.primary} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: theme.palette.background.paper,
+                    color: theme.palette.text.primary,
+                    border: "1px solid #ccc",
+                  }}
+                />
                 <Bar dataKey="revenue" fill="#1976d2" />
               </BarChart>
             </ResponsiveContainer>

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
@@ -10,16 +9,21 @@ import { Drawer, IconButton } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Sidebar from "./Sidebar";
+import { useEffect, useState } from "react";
+import { useThemeMode } from "@/utils/theme"; 
 
 export default function Navbar() {
-  const [theme, setTheme] = useState("light");
-  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // to make page responsive for mobile 
+  const { mode: theme, toggleTheme } = useThemeMode(); 
+  const [mobileOpen, setMobileOpen] = useState(false); 
   const [isMounted, setIsMounted] = useState(false);
 
   const muiTheme = useTheme();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down("md"));
 
   const pathname = usePathname();
+  // tp get title of page
   const pageTitle =
     pathname === "/"
       ? "Dashboard"
@@ -29,40 +33,15 @@ export default function Navbar() {
           .replace(/\b\w/g, (c) => c.toUpperCase());
 
   useEffect(() => {
-    setIsMounted(true);
-
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    } else {
-      setTheme("light");
-      document.documentElement.classList.remove("dark");
-    }
+    setIsMounted(true); 
   }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
 
   return (
     <>
-      {/* Top Navbar */}
+      {/*Navbar */}
       <div className="text-gray-400 h-16 flex items-center px-4 justify-between w-full bg-white dark:bg-dark-card dark:text-white border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-4 shrink-0">
-          {/* Hamburger only on mobile */}
+          {/* Menu Botton only on mobile */}
           {isMounted && isMobile && (
             <IconButton
               onClick={() => setMobileOpen(true)}
@@ -76,6 +55,7 @@ export default function Navbar() {
             {pageTitle}
           </h1>
         </div>
+
         {/* Theme toggle and profile */}
         {isMounted && (
           <div className="flex items-center gap-3 shrink-0 pr-2 min-w-fit">

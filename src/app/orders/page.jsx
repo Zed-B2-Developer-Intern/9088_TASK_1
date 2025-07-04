@@ -32,6 +32,7 @@ export default function OrdersPage() {
     (o) => o.status === "Cancelled"
   ).length;
 
+  // for setting clip color according to status
   const getStatusColor = (status) => {
     switch (status) {
       case "Delivered":
@@ -47,8 +48,9 @@ export default function OrdersPage() {
 
   return (
     <div className="p-4 space-y-6">
-      {/* Summary Cards */}
+      
       <Grid container spacing={2}>
+        {/* Total Orders Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="shadow-md rounded-xl">
             <CardContent>
@@ -59,6 +61,7 @@ export default function OrdersPage() {
             </CardContent>
           </Card>
         </Grid>
+        {/* Delivered Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="shadow-md rounded-xl">
             <CardContent>
@@ -69,6 +72,7 @@ export default function OrdersPage() {
             </CardContent>
           </Card>
         </Grid>
+        {/* Shipped Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="shadow-md rounded-xl">
             <CardContent>
@@ -79,6 +83,7 @@ export default function OrdersPage() {
             </CardContent>
           </Card>
         </Grid>
+        {/* Pending card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="shadow-md rounded-xl">
             <CardContent>
@@ -89,6 +94,7 @@ export default function OrdersPage() {
             </CardContent>
           </Card>
         </Grid>
+        {/* Returned Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="shadow-md rounded-xl">
             <CardContent>
@@ -99,6 +105,7 @@ export default function OrdersPage() {
             </CardContent>
           </Card>
         </Grid>
+        {/* Cancelled Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="shadow-md rounded-xl">
             <CardContent>

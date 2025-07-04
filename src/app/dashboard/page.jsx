@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  Typography,
-  Grid,
-} from "@mui/material";
+import { Card, CardContent, Typography, Grid } from "@mui/material";
 import {
   BarChart,
   Bar,
@@ -25,12 +20,14 @@ import {
   revenueByCategory,
 } from "@/data/sampledata";
 
-const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#a4de6c"];
+const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#a4de6c"];  // color palate for the pie Chart 
+import { useTheme } from "@mui/material/styles";
 
 export default function Dashboard() {
+  const theme = useTheme();  // for the MUI elements to use themes
   return (
     <div className="p-4 space-y-6">
-      {/* Stat Cards */}
+      {/* Total Sales Card */}
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={3}>
           <Card className="rounded-xl shadow-md">
@@ -42,7 +39,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </Grid>
-
+        {/* Total revenue card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="rounded-xl shadow-md">
             <CardContent>
@@ -53,7 +50,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </Grid>
-
+        {/* Total Customers Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="rounded-xl shadow-md">
             <CardContent>
@@ -64,7 +61,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </Grid>
-
+        {/* Average Order Value Card */}
         <Grid item xs={12} sm={6} md={3}>
           <Card className="rounded-xl shadow-md">
             <CardContent>
@@ -86,9 +83,15 @@ export default function Dashboard() {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={monthlySales}>
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
+                <XAxis dataKey="month" stroke={theme.palette.text.primary} />
+                <YAxis stroke={theme.palette.text.primary} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: theme.palette.background.paper,
+                    color: theme.palette.text.primary,
+                    border: "1px solid #ccc",
+                  }}
+                />
                 <Bar dataKey="sales" fill="#1976d2" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>

@@ -1,4 +1,3 @@
-
 "use client";
 import Listtile from "./Listtile";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -20,19 +19,39 @@ export default function Sidebar({ mobile = false }) {
       } bg-gray-100 dark:bg-dark-card w-64 h-screen fixed top-0 left-0 border-r border-gray-200 dark:border-gray-700 flex-col justify-between`}
     >
       <div>
-        <div className="flex flex-col items-center justify-center pt-6 pb-4">
-          <Image src="/dashboard.svg" alt="Logo" width={100} height={100} />
+        <div className="flex items-center justify-center">
+          <img
+            src="/dashboard.svg"
+            alt="Dashboard Logo"
+            className="w-[150px] h-[150px] dark:invert"
+          />
         </div>
-
+        {/* ListTiles */}
         <div className="flex flex-col">
-          <Listtile title="Dashboard" icon={<DashboardIcon />} href={'/dashboard'} />
-          <Listtile title="Analytics" icon={<AnalyticsIcon />} href={'/analytics'}/>
-          <Listtile title="Sales" icon={<TrendingUpIcon />} href={'/sales'}/>
-          <Listtile title="Orders" icon={<ReceiptLongIcon />} href={'/orders'}/>
-          <Listtile title="Categories" icon={<CategoryIcon />} href={'/categories'}/>
+          <Listtile
+            title="Dashboard"
+            icon={<DashboardIcon />}
+            href={"/dashboard"}
+          />
+          <Listtile
+            title="Analytics"
+            icon={<AnalyticsIcon />}
+            href={"/analytics"}
+          />
+          <Listtile title="Sales" icon={<TrendingUpIcon />} href={"/sales"} />
+          <Listtile
+            title="Orders"
+            icon={<ReceiptLongIcon />}
+            href={"/orders"}
+          />
+          <Listtile
+            title="Categories"
+            icon={<CategoryIcon />}
+            href={"/categories"}
+          />
         </div>
       </div>
-
+      {/* Logout Listtile */}
       <div className="mb-4">
         <Listtile
           title="Logout"

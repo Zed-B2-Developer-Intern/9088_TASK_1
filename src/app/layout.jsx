@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import { ThemeProvider } from "@/utils/theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +24,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-gray-50 text-gray-900`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-background text-text-main dark:bg-dark-background dark:text-dark-text-main transition-colors`}
       >
-
+        <ThemeProvider>
 
         {/* Fixed navbar wrapper to prevent layout shift   [responsiveness feature help from ai] */}
         <div className="fixed top-0 z-50 w-full md:w-[calc(100%-16rem)] md:ml-64">
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
         </div>
+        </ThemeProvider>
       </body>
     </html>
   );
