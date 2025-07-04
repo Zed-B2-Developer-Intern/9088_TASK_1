@@ -11,7 +11,7 @@ const Listtile = ({ title, icon, onClick, href }) => {
   // function for handling click Events 
   function handleClick(){
     if(onClick){
-      onclick();
+      onClick();
     }
     else if (href){
       router.push(href);

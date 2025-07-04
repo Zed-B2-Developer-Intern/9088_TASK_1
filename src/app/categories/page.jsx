@@ -26,82 +26,98 @@ export default function CategoriesPage() {
   const totalOrders = categoryStats.reduce((sum, c) => sum + c.orders, 0);
 
   return (
-    <div className="space-y-2">
+    <div className="p-4 space-y-6">
+      {/* Total Categories Card */}
       <Grid container spacing={2}>
-        {/* total categories card */}
-        <Grid item>
-          <Card>
+        <Grid item xs={12} sm={6} md={4}>
+          <Card sx={{ height: "100%" }}>
             <CardContent>
               <Typography variant="subtitle2">Total Categories</Typography>
-              <Typography variant="h4">{categoryStats.length}</Typography>
+              <Typography variant="h5" fontWeight={600}>
+                {categoryStats.length}
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
-        {/* Total revenue card */}
-        <Grid item>
-          <Card>
+        {/* Total Revenue Card */}
+        <Grid item xs={12} sm={6} md={4}>
+          <Card sx={{ height: "100%" }}>
             <CardContent>
               <Typography variant="subtitle2">Total Revenue</Typography>
-              <Typography variant="h4">
+              <Typography variant="h5" fontWeight={600}>
                 ₹{totalRevenue.toLocaleString()}
               </Typography>
             </CardContent>
           </Card>
         </Grid>
-        {/* 
-        Total Orders card
-        */}
-        <Grid item>
-          <Card>
+        {/* Total Orders Card */}
+        <Grid item xs={12} sm={6} md={4}>
+          <Card sx={{ height: "100%" }}>
             <CardContent>
               <Typography variant="subtitle2">Total Orders</Typography>
-              <Typography variant="h4">{totalOrders}</Typography>
+              <Typography variant="h5" fontWeight={600}>
+                {totalOrders}
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
 
       {/* Category Table */}
-      <Card>
+      <Card className="shadow-md rounded-xl">
         <CardContent>
           <Typography variant="h6" gutterBottom>
             Revenue & Orders by Category
           </Typography>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Category</TableCell>
-                <TableCell>Revenue ₹</TableCell>
-                <TableCell>Orders</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {categoryStats.map((cat) => (
-                <TableRow key={cat.category}>
-                  <TableCell>{cat.category}</TableCell>
-                  <TableCell>₹{cat.revenue.toLocaleString()}</TableCell>
-                  <TableCell>{cat.orders}</TableCell>
+          <div className="overflow-x-auto">
+            <Table
+              sx={{
+                minWidth: 500,
+                "& td, & th": {
+                  whiteSpace: "nowrap",
+                  fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                  px: { xs: 1, sm: 2 },
+                  py: 1,
+                },
+              }}
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell>Category</TableCell>
+                  <TableCell>Revenue ₹</TableCell>
+                  <TableCell>Orders</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHead>
+              <TableBody>
+                {categoryStats.map((cat) => (
+                  <TableRow key={cat.category}>
+                    <TableCell>{cat.category}</TableCell>
+                    <TableCell>₹{cat.revenue.toLocaleString()}</TableCell>
+                    <TableCell>{cat.orders}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
 
-      {/* Revenue Chart */}
-      <Card>
+      {/* Bar Chart */}
+      <Card className="shadow-md rounded-xl">
         <CardContent>
           <Typography variant="h6" gutterBottom>
             Revenue by Category (Bar Chart)
           </Typography>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={categoryStats}>
-              <XAxis dataKey="category" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="revenue" fill="#1976d2" />
-            </BarChart>
-          </ResponsiveContainer>
+          <div className="w-full h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={categoryStats}>
+                <XAxis dataKey="category" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="revenue" fill="#1976d2" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </CardContent>
       </Card>
     </div>

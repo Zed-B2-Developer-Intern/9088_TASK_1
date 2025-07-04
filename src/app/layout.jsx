@@ -1,8 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import Navbar from '../components/Navbar'; 
-import Sidebar from '../components/Sidebar'; 
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,22 +22,27 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-gray-50 text-gray-900  `}>
-        
-        {/* Navbar (fixed height) */}
-        <Navbar />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} bg-gray-50 text-gray-900`}
+      >
 
-        {/* Sidebar + Main Content */}
-        <div className="flex">
-          {/* Sidebar (fixed, 64 width) */}
-          <Sidebar />
 
-          {/* Main content */}
-          <main className="ml-64 mt-16 p-6 w-full">
+        {/* Fixed navbar wrapper to prevent layout shift   [responsiveness feature help from ai] */}
+        <div className="fixed top-0 z-50 w-full md:w-[calc(100%-16rem)] md:ml-64">
+          <Navbar />
+        </div>
+
+        <div className="flex pt-16">
+          {/* Sidebar only on md+ screens */}
+          <div className="hidden md:block fixed top-16 left-0 h-[calc(100vh-4rem)] w-64">
+            <Sidebar />
+          </div>
+
+          {/* Main content, with left margin only on md+ */}
+          <main className="ml-0 md:ml-64 p-6 w-full min-h-[calc(100vh-4rem)]">
             {children}
           </main>
         </div>
-        
       </body>
     </html>
   );

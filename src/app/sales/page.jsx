@@ -36,96 +36,108 @@ export default function SalesPage() {
   );
 
   return (
-    <div>
+    <div className="p-4 space-y-6">
+      {/* Summary Cards */}
       <Grid container spacing={2}>
-        <Grid item>
-          <Card>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card className="rounded-xl shadow-md">
             <CardContent>
-              <Typography variant="subtitle1">Total Sales</Typography>
-              <Typography variant="h4">
+              <Typography variant="subtitle2">Total Sales</Typography>
+              <Typography variant="h5" fontWeight={600}>
                 {dashboardSummary.totalSales}
               </Typography>
             </CardContent>
           </Card>
         </Grid>
-        <Grid item>
-          <Card>
+
+        <Grid item xs={12} sm={6} md={3}>
+          <Card className="rounded-xl shadow-md">
             <CardContent>
-              <Typography variant="subtitle1">Total Revenue</Typography>
-              <Typography variant="h4">
+              <Typography variant="subtitle2">Total Revenue</Typography>
+              <Typography variant="h5" fontWeight={600}>
                 ₹{dashboardSummary.totalRevenue}
               </Typography>
             </CardContent>
           </Card>
         </Grid>
-        <Grid item>
-          <Card>
+
+        <Grid item xs={12} sm={6} md={3}>
+          <Card className="rounded-xl shadow-md">
             <CardContent>
-              <Typography variant="subtitle1">Avg Order Value</Typography>
-              <Typography variant="h4">
-                {dashboardSummary.avgOrderValue}
+              <Typography variant="subtitle2">Avg Order Value</Typography>
+              <Typography variant="h5" fontWeight={600}>
+                ₹{dashboardSummary.avgOrderValue}
               </Typography>
             </CardContent>
           </Card>
         </Grid>
-        <Grid item>
-          <Card>
+
+        <Grid item xs={12} sm={6} md={3}>
+          <Card className="rounded-xl shadow-md">
             <CardContent>
-              <Typography variant="subtitle1">Highest Month</Typography>
-              <Typography variant="h4">{highestMonth.month}</Typography>
+              <Typography variant="subtitle2">Highest Month</Typography>
+              <Typography variant="h5" fontWeight={600}>
+                {highestMonth.month}
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
 
       {/* Monthly Sales Chart */}
-      <Card className="my-2">
+      <div>
+        <Typography variant="h6" className="mb-2 font-semibold">
+          Monthly Sales
+        </Typography>
+        <Card className="rounded-xl shadow-md">
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={monthlySales}>
+                <XAxis dataKey="month" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="sales" fill="#1976d2" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Category Revenue Table */}
+      <div>
+        <Typography variant="h6" className="mb-2 font-semibold">
+          Revenue by Category
+        </Typography>
+        <Card className="rounded-xl shadow-md">
+          <CardContent>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Category</TableCell>
+                    <TableCell align="right">Revenue (₹)</TableCell>
+                    <TableCell align="right">Orders</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {categoryStats.map((row) => (
+                    <TableRow key={row.category}>
+                      <TableCell>{row.category}</TableCell>
+                      <TableCell align="right">₹{row.revenue}</TableCell>
+                      <TableCell align="right">{row.orders}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Top Category Summary */}
+      <Card className="rounded-xl shadow-md">
         <CardContent>
           <Typography variant="h6" gutterBottom>
-            Monthly Sales
-          </Typography>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={monthlySales}>
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="sales" fill="#1976d2" />
-            </BarChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
-
-      {/* category wise Revenue table */}
-
-      <Card className="my-2">
-        <CardContent>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Category</TableCell>
-
-                <TableCell align="right">Revenue  ₹ </TableCell>
-
-                <TableCell align="right">Orders</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {categoryStats.map((row) => (
-                <TableRow key={row.category}>
-                    <TableCell>{row.category}</TableCell>
-                  <TableCell align="right">₹{row.revenue}</TableCell>
-                  <TableCell align="right">{row.orders}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
-
-      {/* Highlight Top Category */}
-      <Card>
-        <CardContent>
-          <Typography variant="h5" gutterBottom>
             Top Performing Category
           </Typography>
           <Typography variant="body1">
