@@ -1,7 +1,5 @@
 "use client";
 
-// remember : theme toggling help was from ai { need to learn the tailwind css for theme settings}
-
 import {
   createTheme,
   CssBaseline,

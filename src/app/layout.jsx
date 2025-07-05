@@ -27,19 +27,14 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} bg-background text-text-main dark:bg-dark-background dark:text-dark-text-main transition-colors`}
       >
         <ThemeProvider>
-
-        {/* Fixed navbar wrapper to prevent layout shift   [responsiveness feature help from ai] */}
         <div className="fixed top-0 z-50 w-full md:w-[calc(100%-16rem)] md:ml-64">
           <Navbar />
         </div>
 
         <div className="flex pt-16">
-          {/* Sidebar only on md+ screens */}
           <div className="hidden md:block fixed top-16 left-0 h-[calc(100vh-4rem)] w-64">
             <Sidebar />
           </div>
-
-          {/* Main content, with left margin only on md+ */}
           <main className="ml-0 md:ml-64 p-6 w-full min-h-[calc(100vh-4rem)]">
             {children}
           </main>
